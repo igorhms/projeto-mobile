@@ -80,6 +80,7 @@ const IntroScreen = (props) => {
         renderPrevButton={renderPrevButton}
         showPrevButton
         onDone={handleDone}
+        
       />
     </View>
   );
