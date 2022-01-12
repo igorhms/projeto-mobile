@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "teste_expo",
-    "slug": "teste_expo",
+    "name": "projeto_mobile_joslin",
+    "slug": "projeto_mobile_joslin",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#01A6DE"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,8 +23,8 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "foregroundImage": "./assets/images/icon.png",
+        "backgroundColor": "#01A6DE"
       }
     },
     "web": {
