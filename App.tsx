@@ -1,22 +1,20 @@
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { useState } from "react";
+import React from "react";
+import Home from "./screens/Home";
+import IntroScreen from "./screens/IntroScreen";
 
-import useCachedResources from './hooks/useCachedResources';
-import useColorScheme from './hooks/useColorScheme';
-import Navigation from './navigation';
+const App = () => {
+  const [showIntroscreen, setShowIntroScreen] = useState(true);
+  const handleIntroScreen = () => {
+    setShowIntroScreen(false);
+  };
 
-export default function App() {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
+  return (
+    <>
+      {showIntroscreen && <IntroScreen handleDone={handleIntroScreen} />}
+      {!showIntroscreen && <Home />}
+    </>
+  );
+};
 
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-      </SafeAreaProvider>
-    );
-  }
-}
+export default App;
