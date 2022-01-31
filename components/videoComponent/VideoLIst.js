@@ -6,9 +6,12 @@ import {
     FlatList,
     TouchableOpacity,
     ActivityIndicator,
-} from 'react-native'
-import YoutubeVideoPlayer from '../videoComponent/YoutubeVideoPlayer'
-import PlayListCards from '../videoComponent/PlayListCards'
+} from 'react-native';
+import YoutubeVideoPlayer from './YoutubeVideoPlayer';
+import PlayListCards from './PlayListCards';
+import TextGradient from '../textGradient/Textgradient';
+import Colors from "../../constants/Colors";
+import Fonts from "../../constants/Fonts";
 
 const VideoList = () => {
 
@@ -23,7 +26,7 @@ const VideoList = () => {
 
     useEffect(() => {
 
-        fetch("http://192.168.100.10:8080/fetch-playlist-videos?id=PLF5dIrODfCgVNGtUdnGwBhJ-huT52vS08")
+        fetch("https://joslin-insitute.herokuapp.com/fetch-playlist-videos?id=PLF5dIrODfCgVNGtUdnGwBhJ-huT52vS08")
             .then((response) => response.json())
             .then((json) => {
                 setData(json)
@@ -34,7 +37,7 @@ const VideoList = () => {
 
             })
             .catch((error) => console.error(error))
-            .finally(setLoading(false))
+            .finally(() =>setLoading(false))
 
     }, []);
 
@@ -87,9 +90,18 @@ const VideoList = () => {
             <YoutubeVideoPlayer
                 videoId={videoId}
             />
-            <Text>{videoTitle}</Text>
+            <TextGradient style = {styles.titleText}
+                        
+            >
+                {videoTitle}
+            </TextGradient>
+                
+                
+            
+
+            <PreviusAndNextButtom/>
+            <Text>DESCRIÇÂO</Text>
             <Text >{videoDescription}</Text>
-            <PreviusAndNextButtom />
 
             {isLoading ? (
                 <ActivityIndicator size={"large"} color={"red"}
@@ -141,10 +153,18 @@ const styles = StyleSheet.create({
     outra: {
         marginTop: 80
     },
-    tinyLogo: {
-        width: 50,
-        height: 50,
-    }
+   titleText:{ 
+       fontFamily: Fonts.fonts.subTitles,
+       fontSize:12,
+   },
+   gradiente:{
+    top:0, 
+    position:"absolute",
+    left:0, 
+    right:0,
+    bottom:0
+}
 
-})
+});
+
 export default VideoList;

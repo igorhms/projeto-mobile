@@ -8,4 +8,7 @@ export default {
   blue: "#1C215D",
   blueFaded: "#8D8FAD",
   white: "#FFFFFF",
+  normalTextColor: "#333333",
+  lightBlue: "#17d7f1",
+  darkBLue: "#0047ff"
 };

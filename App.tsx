@@ -2,6 +2,8 @@ import { useState } from "react";
 import React from "react";
 import Home from "./screens/Home";
 import IntroScreen from "./screens/IntroScreen";
+import VideoList  from "./components/videoComponent/VideoList";
+
 import { 
   useFonts,
   Poppins_100Thin,
@@ -42,7 +44,7 @@ const App = () => {
   return (
     <>
       {showIntroscreen && <IntroScreen handleDone={handleIntroScreen} />}
-      {!showIntroscreen && <Home />}
+      {!showIntroscreen && <VideoList/>}
     </>
   );
 };

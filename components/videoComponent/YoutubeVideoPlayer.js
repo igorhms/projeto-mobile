@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react"
-import { View } from 'react-native'
+import { View, StyleSheet } from 'react-native'
 import YoutubePlayer from 'react-native-youtube-iframe';
 
 const YoutubeVideoPlayer = (props) => {
@@ -14,17 +14,37 @@ const YoutubeVideoPlayer = (props) => {
 
 
     return (
-        <View  >
+        <View  style = {styles.container}>
+            <View style = {styles.videoPlayer}> 
             <YoutubePlayer
-                height={200}
+                height={190}
                 play={playing}
                 videoId={props.videoId}
                 onChangeState={onStateChange}
             />
+            </View>
+           
 
         </View>
     );
 
 
 }
+
+
+const styles = StyleSheet.create({
+
+    container: {
+       marginTop:20,
+       width:"100%",
+       height:200,
+       alignItems:"center",
+    },
+
+    videoPlayer:{
+        width:"90%",
+    }
+    
+});
+
 export default YoutubeVideoPlayer;
