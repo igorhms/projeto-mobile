@@ -7,10 +7,11 @@ import Colors from "../../constants/Colors";
 
 const TextGradient = (props) => {
     return (
+
       <MaskedView maskElement={<Text {...props}/>}>
         <LinearGradient
-          start={{x: 0, y: 0}} end={{x: 1, y: 0}}
-          colors={[Colors.darkBLue, Colors.lightBlue]}
+          colors={[Colors.darkBlue, Colors.lightBlue]}
+          start={{x: 0, y: 0.5}} end={{x:0 , y:  0.8}}
         >
           <Text {...props} style={[props.style, { opacity: 0 }]}/> 
         </LinearGradient>

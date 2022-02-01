@@ -7,7 +7,7 @@ const PlayListCard = (props) => {
     return (
         <View style={[props.style, styles.container]}>
             <Image style={styles.thumbnail} source={{ uri: props.imageUrl }} />
-            <Text style = {styles.textTitle}>{props.title}</Text>
+            <Text style = {[styles.textTitle, props.style]}>{props.title}</Text>
         </View>
     )
 }
@@ -18,17 +18,17 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
         alignItems:"center",
-        marginTop:20,
-        marginLeft:20
+        marginTop:16,
+        paddingHorizontal:20,        
     },
 
     thumbnail: {
-        width: 70,
-        height: 55,
+        width: 75,
+        height: 60,
     },
 
     textTitle:{
-        fontFamily: Fonts.fonts.text,
+        fontFamily: Fonts.fonts.ligthText,
         color: Colors.normalTextColor,
         fontSize: 12,
         marginLeft:10

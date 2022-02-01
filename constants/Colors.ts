@@ -9,6 +9,7 @@ export default {
   blueFaded: "#8D8FAD",
   white: "#FFFFFF",
   normalTextColor: "#333333",
+  grayTextColor: "#979797",
   lightBlue: "#17d7f1",
-  darkBLue: "#0047ff"
+  darkBlue: "#0047ff"
 };

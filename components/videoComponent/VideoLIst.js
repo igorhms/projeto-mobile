@@ -13,8 +13,7 @@ import TextGradient from '../textGradient/Textgradient';
 import Colors from "../../constants/Colors";
 import Fonts from "../../constants/Fonts";
 
-const VideoList = () => {
-
+const VideoList = (props) => {
 
     const [isLoading, setLoading] = useState(true);
     const [data, setData] = useState([]);
@@ -26,7 +25,7 @@ const VideoList = () => {
 
     useEffect(() => {
 
-        fetch("https://joslin-insitute.herokuapp.com/fetch-playlist-videos?id=PLF5dIrODfCgVNGtUdnGwBhJ-huT52vS08")
+        fetch(`https://joslin-insitute.herokuapp.com/fetch-playlist-videos?id=${props.playListId}`)
             .then((response) => response.json())
             .then((json) => {
                 setData(json)
@@ -34,11 +33,9 @@ const VideoList = () => {
                 setVideoDescription(json[0].snippet.description)
                 setId(json[0].id)
                 setIndex(0)
-
             })
             .catch((error) => console.error(error))
-            .finally(() =>setLoading(false))
-
+            .finally(() => setLoading(false))
     }, []);
 
     const setVideoMetadata = (currentVideoIndex, currentVideoId, currentVideoTitle, currentVideoDescription) => {
@@ -47,13 +44,6 @@ const VideoList = () => {
         setVideoDescription(currentVideoDescription)
         setIndex(currentVideoIndex)
     }
-
-    useEffect(() => {
-        ref.current?.scrollToIndex({
-            selectedIndex,
-            animated: true
-        });
-    }, [selectedIndex])
 
     const nextBtn = () => {
         if (selectedIndex == data.length - 1) {
@@ -66,70 +56,74 @@ const VideoList = () => {
         if (selectedIndex == 0) {
             return;
         }
-
         setVideoMetadata(selectedIndex - 1, data[selectedIndex - 1].id, data[selectedIndex - 1].snippet.title, data[selectedIndex - 1].snippet.description)
     }
 
+    useEffect(() => {
+        ref.current?.scrollToIndex({
+            selectedIndex,
+            animated: true
+        });
+    }, [selectedIndex])
+
     const PreviusAndNextButtom = () => {
         return (
-            <View>
+            <View style={styles.prevAndNextBtn}>
                 <TouchableOpacity onPress={() => { previusBtn() }}>
-                    <Text>{"<<voltar"}</Text>
+                    <Text style={[selectedIndex == 0 ? { opacity: 0 } : { opacity: 1 }, styles.prevAndNextBtnText]}>{"<<Voltar"}</Text>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { nextBtn() }}>
-                    <Text>{"proximo>>"}</Text>
+                    <Text style={[selectedIndex == data.length - 1 ? { opacity: 0 } : { opacity: 1 }, styles.prevAndNextBtnText]}>{"Proximo>>"}</Text>
                 </TouchableOpacity>
             </View>
         )
-
     }
-
-
+    
     return (
-        <View>
-            <YoutubeVideoPlayer
-                videoId={videoId}
-            />
-            <TextGradient style = {styles.titleText}
-                        
-            >
-                {videoTitle}
-            </TextGradient>
-                
-                
-            
-
-            <PreviusAndNextButtom/>
-            <Text>DESCRIÇÂO</Text>
-            <Text >{videoDescription}</Text>
-
+        <View style = {styles.container}>
+             <YoutubeVideoPlayer
+                        videoId={videoId}
+                        title={videoTitle}
+                    />
             {isLoading ? (
-                <ActivityIndicator size={"large"} color={"red"}
-                    style={styles.outra} />
+                <ActivityIndicator size={"large"} color={Colors.darkBlue}
+                    style={styles.activityIndicator} />
             ) : (
+                <View>   
+                    <PreviusAndNextButtom />
+                    <View style={styles.descricao}>
+                        <TextGradient style={styles.subTitleText}>
+                            Descrição
+                        </TextGradient>
+                        <Text style={styles.descriptionText}>{videoDescription}</Text>
+                    </View>
+                    <View style={styles.videosRelacionados}>
+                        <TextGradient style={styles.subTitleText}>
+                            Videos Relacionados
+                        </TextGradient>
+                    </View>
 
-                <FlatList
-                    initialScrollIndex={selectedIndex}
-                    extraData={selectedIndex}
-                    data={data}
-                    keyExtractor={(item) => item.id}
-                    renderItem={({ item, index }) => (
-                        <TouchableOpacity
-                            onPress={() => {
-                                setVideoMetadata(index, item.id, item.snippet.title, item.snippet.description)
-                            }}
-                        >
-                            <PlayListCards
-                                style={index === selectedIndex ? styles.itemActive : styles.item}
-                                imageUrl={item.snippet.thumbnails.high.url}
-                                title={item.snippet.title}
-                            />
-                        </TouchableOpacity>
-
-                    )}
-                />
+                    <FlatList
+                        initialScrollIndex={selectedIndex}
+                        extraData={selectedIndex}
+                        data={data}
+                        keyExtractor={(item) => item.id}
+                        renderItem={({ item, index }) => (
+                            <TouchableOpacity
+                                onPress={() => {
+                                    setVideoMetadata(index, item.id, item.snippet.title, item.snippet.description)
+                                }}
+                            >
+                                <PlayListCards
+                                    style={index === selectedIndex ? { backgroundColor: Colors.darkBlue, color: "#FFFFFF" } : { backgroundColor: Colors.white }}
+                                    imageUrl={item.snippet.thumbnails.high.url}
+                                    title={item.snippet.title}
+                                />
+                            </TouchableOpacity>
+                        )}
+                    />
+                </View>
             )}
-
         </View>
     );
 
@@ -139,32 +133,41 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        marginTop: 50,
-    },
-    itemActive: {
-        backgroundColor: "red",
-        marginTop: 20
     },
 
-    item: {
-        marginTop: 20,
-
+    activityIndicator: {
+        justifyContent: "center",
+        alignItems: "center",
+       },
+    subTitleText: {
+        fontFamily: Fonts.fonts.boldText,
+        fontSize: 14,
     },
-    outra: {
-        marginTop: 80
+    descriptionText: {
+        fontFamily: Fonts.fonts.ligthText,
+        fontSize: 13,
+        letterSpacing: 0.5,
     },
-   titleText:{ 
-       fontFamily: Fonts.fonts.subTitles,
-       fontSize:12,
-   },
-   gradiente:{
-    top:0, 
-    position:"absolute",
-    left:0, 
-    right:0,
-    bottom:0
-}
-
+    descricao: {
+        paddingHorizontal: 20,
+        marginTop: 16,
+    },
+    videosRelacionados: {
+        paddingHorizontal: 20,
+        marginTop: 24,
+    },
+    prevAndNextBtn: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        paddingHorizontal: 20,
+        marginTop: 37,
+    },
+    prevAndNextBtnText: {
+        fontFamily: Fonts.fonts.boldText,
+        fontSize: 14,
+        color: Colors.grayTextColor,
+        letterSpacing: -0.5
+    }
 });
 
 export default VideoList;

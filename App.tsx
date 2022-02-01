@@ -44,7 +44,7 @@ const App = () => {
   return (
     <>
       {showIntroscreen && <IntroScreen handleDone={handleIntroScreen} />}
-      {!showIntroscreen && <VideoList/>}
+      {!showIntroscreen && <VideoList playListId = {"PLF5dIrODfCgVNGtUdnGwBhJ-huT52vS08"}/>}
     </>
   );
 };
