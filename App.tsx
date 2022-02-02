@@ -16,6 +16,7 @@ import {
   Poppins_900Black,
 } from '@expo-google-fonts/poppins';
 import AppLoading from 'expo-app-loading'
+import PlayListsIds from "./constants/PlayListsIds";
 
 const App = () => {
 
@@ -44,7 +45,7 @@ const App = () => {
   return (
     <>
       {showIntroscreen && <IntroScreen handleDone={handleIntroScreen} />}
-      {!showIntroscreen && <VideoList playListId = {"PLF5dIrODfCgVNGtUdnGwBhJ-huT52vS08"}/>}
+      {!showIntroscreen && <VideoList playListId = {PlayListsIds.playListsIds.sosHiper}/>}
     </>
   );
 };
