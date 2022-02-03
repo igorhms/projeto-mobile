@@ -6,6 +6,8 @@ import {
     FlatList,
     TouchableOpacity,
     ActivityIndicator,
+    SafeAreaView,
+    ScrollView
 } from 'react-native';
 import YoutubeVideoPlayer from './YoutubeVideoPlayer';
 import PlayListCards from './PlayListCards';
@@ -21,7 +23,7 @@ const VideoList = (props) => {
     const [videoTitle, setVideoTitle] = useState("");
     const [videoDescription, setVideoDescription] = useState("");
     const [selectedIndex, setIndex] = useState(0);
-    const ref = useRef(null);
+    const myref = useRef(null);
 
     useEffect(() => {
 
@@ -32,17 +34,17 @@ const VideoList = (props) => {
                 setVideoTitle(json[0].snippet.title)
                 setVideoDescription(json[0].snippet.description)
                 setId(json[0].id)
-                setIndex(0)
             })
             .catch((error) => console.error(error))
             .finally(() => setLoading(false))
     }, []);
 
     const setVideoMetadata = (currentVideoIndex, currentVideoId, currentVideoTitle, currentVideoDescription) => {
+        setIndex(currentVideoIndex)
         setId(currentVideoId)
         setVideoTitle(currentVideoTitle)
         setVideoDescription(currentVideoDescription)
-        setIndex(currentVideoIndex)
+        
     }
 
     const nextBtn = () => {
@@ -60,9 +62,10 @@ const VideoList = (props) => {
     }
 
     useEffect(() => {
-        ref.current?.scrollToIndex({
-            selectedIndex,
-            animated: true
+        myref.current?.scrollToIndex({
+            selectedIndex:selectedIndex,
+            animated:true,
+
         });
     }, [selectedIndex])
 
@@ -78,25 +81,28 @@ const VideoList = (props) => {
             </View>
         )
     }
-    
+
     return (
-        <View style = {styles.container}>
-             <YoutubeVideoPlayer
-                        videoId={videoId}
-                        title={videoTitle}
-                    />
+        <SafeAreaView style={styles.container}>
+            <YoutubeVideoPlayer
+                videoId={videoId}
+                title={videoTitle}
+            />
             {isLoading ? (
                 <ActivityIndicator size={"large"} color={Colors.darkBlue}
                     style={styles.activityIndicator} />
             ) : (
-                <View>   
+                <View>
                     <PreviusAndNextButtom />
-                    <View style={styles.descricao}>
-                        <TextGradient style={styles.subTitleText}>
-                            Descrição
-                        </TextGradient>
-                        <Text style={styles.descriptionText}>{videoDescription}</Text>
-                    </View>
+                    <ScrollView>
+                        <View style={styles.descricao}>
+                            <TextGradient style={styles.subTitleText}>
+                                Descrição
+                            </TextGradient>
+
+                            <Text style={styles.descriptionText}>{videoDescription}</Text>
+                        </View>
+                    </ScrollView>
                     <View style={styles.videosRelacionados}>
                         <TextGradient style={styles.subTitleText}>
                             Videos Relacionados
@@ -104,11 +110,12 @@ const VideoList = (props) => {
                     </View>
 
                     <FlatList
+                        ref={myref}
                         initialScrollIndex={selectedIndex}
-                        extraData={selectedIndex}
                         data={data}
                         keyExtractor={(item) => item.id}
                         renderItem={({ item, index }) => (
+
                             <TouchableOpacity
                                 onPress={() => {
                                     setVideoMetadata(index, item.id, item.snippet.title, item.snippet.description)
@@ -124,7 +131,7 @@ const VideoList = (props) => {
                     />
                 </View>
             )}
-        </View>
+        </SafeAreaView>
     );
 
 }
@@ -133,12 +140,13 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
+
     },
 
     activityIndicator: {
         justifyContent: "center",
         alignItems: "center",
-       },
+    },
     subTitleText: {
         fontFamily: Fonts.fonts.boldText,
         fontSize: 14,
@@ -147,6 +155,7 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.fonts.ligthText,
         fontSize: 13,
         letterSpacing: 0.5,
+        textAlign:'justify'
     },
     descricao: {
         paddingHorizontal: 20,
@@ -154,13 +163,13 @@ const styles = StyleSheet.create({
     },
     videosRelacionados: {
         paddingHorizontal: 20,
-        marginTop: 24,
+        marginTop:5,
     },
     prevAndNextBtn: {
         flexDirection: "row",
         justifyContent: "space-between",
         paddingHorizontal: 20,
-        marginTop: 37,
+        marginTop: 50
     },
     prevAndNextBtnText: {
         fontFamily: Fonts.fonts.boldText,

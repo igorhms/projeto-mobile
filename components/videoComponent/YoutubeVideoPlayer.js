@@ -41,11 +41,7 @@ const styles = StyleSheet.create({
        width:"100%",
        height:200, 
     },
-    teste:{ 
-        width:"100%",
-        alignSelf:"center",
-        alignContent:"center",
-    },
+ 
     titleText:{ 
         fontFamily: Fonts.fonts.boldText,
         fontSize:14,

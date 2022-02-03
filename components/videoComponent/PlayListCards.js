@@ -6,8 +6,9 @@ import Colors from "../../constants/Colors";
 const PlayListCard = (props) => {
     return (
         <View style={[props.style, styles.container]}>
-            <Image style={styles.thumbnail} source={{ uri: props.imageUrl }} />
-            <Text style = {[styles.textTitle, props.style]}>{props.title}</Text>
+         
+                <Image style={styles.thumbnail} source={{ uri: props.imageUrl }} />
+                <Text style = {[styles.textTitle, props.style]}>{props.title}</Text>
         </View>
     )
 }
@@ -15,11 +16,10 @@ const PlayListCard = (props) => {
 const styles = StyleSheet.create({
 
     container:{
-        flex: 1,
         flexDirection: "row",
         alignItems:"center",
         marginTop:16,
-        paddingHorizontal:20,        
+        paddingHorizontal:20,    
     },
 
     thumbnail: {
@@ -31,7 +31,10 @@ const styles = StyleSheet.create({
         fontFamily: Fonts.fonts.ligthText,
         color: Colors.normalTextColor,
         fontSize: 12,
-        marginLeft:10
+        paddingLeft:8,
+        flex:1,
+        flexWrap:"wrap" 
+         
     }
 });
 
