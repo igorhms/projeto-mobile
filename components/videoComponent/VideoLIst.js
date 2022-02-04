@@ -74,7 +74,7 @@ const VideoList = (props) => {
     const PreviusAndNextButtom = () => {
         return (
             <View style={styles.prevAndNextBtn}>
-                <TouchableOpacity onPress={() => { previusBtn() , onScrollToindex(), setViewPosition(0.1) }} 
+                <TouchableOpacity onPress={() => { previusBtn() , onScrollToindex(), setViewPosition(0.2) }} 
                 >
                     <Text style={[selectedIndex == 0 ? { opacity: 0 } : { opacity: 1 },
                           styles.prevAndNextBtnText]}
@@ -103,7 +103,7 @@ const VideoList = (props) => {
                 <ActivityIndicator size={"large"} color={Colors.darkBlue}
                     style={styles.activityIndicator} />
             ) : (
-                <View>
+                <View style = {{flex:1}}>
 
                     <PreviusAndNextButtom />
                     <View style ={{paddingLeft:20, marginTop:10}}>
@@ -113,8 +113,6 @@ const VideoList = (props) => {
                     </View>
                     <ScrollView style={styles.descripitionContainer} >
                         <View >
-                           
-
                             <Text style={styles.descriptionText}>{videoDescription}</Text>
                         </View>
                     </ScrollView>
@@ -125,6 +123,7 @@ const VideoList = (props) => {
                     </View>
 
                     <FlatList
+                        style={{marginBottom:20}}
                         ref={(ref)=> setFlatListRef(ref)}
                         initialScrollIndex={selectedIndex}
                         data={data}
