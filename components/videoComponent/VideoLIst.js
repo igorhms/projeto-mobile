@@ -23,7 +23,8 @@ const VideoList = (props) => {
     const [videoTitle, setVideoTitle] = useState("");
     const [videoDescription, setVideoDescription] = useState("");
     const [selectedIndex, setIndex] = useState(0);
-    const myref = useRef(null);
+    const [flatListRef, setFlatListRef] = useState();
+    const [viewPosition, setViewPosition] = useState();
 
     useEffect(() => {
 
@@ -60,23 +61,33 @@ const VideoList = (props) => {
         }
         setVideoMetadata(selectedIndex - 1, data[selectedIndex - 1].id, data[selectedIndex - 1].snippet.title, data[selectedIndex - 1].snippet.description)
     }
-
-    useEffect(() => {
-        myref.current?.scrollToIndex({
-            selectedIndex:selectedIndex,
+    
+    const onScrollToindex = () => {
+        flatListRef.scrollToIndex({
+            index: selectedIndex,
             animated:true,
+            viewPosition:viewPosition
 
         });
-    }, [selectedIndex])
+     }
 
     const PreviusAndNextButtom = () => {
         return (
             <View style={styles.prevAndNextBtn}>
-                <TouchableOpacity onPress={() => { previusBtn() }}>
-                    <Text style={[selectedIndex == 0 ? { opacity: 0 } : { opacity: 1 }, styles.prevAndNextBtnText]}>{"<<Voltar"}</Text>
+                <TouchableOpacity onPress={() => { previusBtn() , onScrollToindex(), setViewPosition(0.1) }} 
+                >
+                    <Text style={[selectedIndex == 0 ? { opacity: 0 } : { opacity: 1 },
+                          styles.prevAndNextBtnText]}
+                          >
+                              {"<<Voltar"}
+                    </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { nextBtn() }}>
-                    <Text style={[selectedIndex == data.length - 1 ? { opacity: 0 } : { opacity: 1 }, styles.prevAndNextBtnText]}>{"Proximo>>"}</Text>
+                <TouchableOpacity onPress={() => { nextBtn(),onScrollToindex(), setViewPosition(0) }}>
+                    <Text style={[selectedIndex == data.length - 1 ? { opacity: 0 } : { opacity: 1 },
+                         styles.prevAndNextBtnText]}
+                         >
+                             {"Proximo>>"}
+                    </Text>
                 </TouchableOpacity>
             </View>
         )
@@ -93,12 +104,16 @@ const VideoList = (props) => {
                     style={styles.activityIndicator} />
             ) : (
                 <View>
+
                     <PreviusAndNextButtom />
-                    <ScrollView>
-                        <View style={styles.descricao}>
-                            <TextGradient style={styles.subTitleText}>
-                                Descrição
-                            </TextGradient>
+                    <View style ={{paddingLeft:20, marginTop:10}}>
+                        <TextGradient style={styles.subTitleText}>
+                                    Descrição
+                        </TextGradient>
+                    </View>
+                    <ScrollView style={styles.descripitionContainer} >
+                        <View >
+                           
 
                             <Text style={styles.descriptionText}>{videoDescription}</Text>
                         </View>
@@ -110,7 +125,7 @@ const VideoList = (props) => {
                     </View>
 
                     <FlatList
-                        ref={myref}
+                        ref={(ref)=> setFlatListRef(ref)}
                         initialScrollIndex={selectedIndex}
                         data={data}
                         keyExtractor={(item) => item.id}
@@ -140,7 +155,6 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-
     },
 
     activityIndicator: {
@@ -150,26 +164,29 @@ const styles = StyleSheet.create({
     subTitleText: {
         fontFamily: Fonts.fonts.boldText,
         fontSize: 14,
+     
     },
     descriptionText: {
         fontFamily: Fonts.fonts.ligthText,
         fontSize: 13,
         letterSpacing: 0.5,
-        textAlign:'justify'
+        textAlign:'justify',
+      
     },
-    descricao: {
+    descripitionContainer: {
         paddingHorizontal: 20,
-        marginTop: 16,
+        height:100
     },
     videosRelacionados: {
         paddingHorizontal: 20,
-        marginTop:5,
+        marginTop:0,
     },
     prevAndNextBtn: {
         flexDirection: "row",
         justifyContent: "space-between",
         paddingHorizontal: 20,
-        marginTop: 50
+        marginTop: 50,
+        height:30
     },
     prevAndNextBtnText: {
         fontFamily: Fonts.fonts.boldText,
