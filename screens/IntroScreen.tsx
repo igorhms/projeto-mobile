@@ -1,25 +1,24 @@
 import React from "react";
 import { View, Text, StyleSheet, StatusBar, Image } from "react-native";
-
+import { Button } from "react-native-elements";
 import AppIntroSlider from "react-native-app-intro-slider";
-import LinearGradient from "react-native-linear-gradient";
 import colors from "../constants/Colors";
 
 const data = [
   {
     title: "Save time by tracking your studies",
     text: "Schedule your classes, assignments, quizzes and more",
-    // image: require('../assets/images/splash.png'),
+    image: require("../assets/images/intro1.png"),
   },
   {
     title: "Stay on top of your education",
     text: "Reduce your stress, increase your productivity",
-    // image: require('../assets/images/splash.png'),
+    image: require("../assets/images/intro2.png"),
   },
   {
     title: "Spend more time doing the things you love",
     text: "Get started within five minutes",
-    // image: require('../assets/images/splash.png'),
+    image: require("../assets/images/intro3.png"),
   },
 ];
 
@@ -69,6 +68,32 @@ const IntroScreen = (props) => {
   return (
     <View style={{ flex: 1 }}>
       <StatusBar translucent backgroundColor="transparent" />
+      <Button
+        onPress={handleDone}
+        title={"Pular"}
+        titleStyle={{ fontWeight: "bold", fontSize: 14 }}
+        buttonStyle={{
+          borderWidth: 0,
+          borderColor: "transparent",
+          borderRadius: 20,
+          backgroundColor: colors.blueGlico,
+        }}
+        containerStyle={{
+          width: 100,
+          height: 35,
+          marginVertical: 38,
+          marginRight: 20,
+          alignSelf: "flex-end",
+        }}
+        icon={{
+          name: "arrow-right",
+          type: "font-awesome",
+          size: 15,
+          color: "white",
+        }}
+        iconRight
+        iconContainerStyle={{ marginLeft: 10, marginRight: -10 }}
+      />
       <AppIntroSlider
         keyExtractor={keyExtractor}
         renderItem={renderItem}
@@ -80,7 +105,6 @@ const IntroScreen = (props) => {
         renderPrevButton={renderPrevButton}
         showPrevButton
         onDone={handleDone}
-        
       />
     </View>
   );
@@ -89,33 +113,35 @@ const IntroScreen = (props) => {
 const styles = StyleSheet.create({
   slide: {
     flex: 1,
+    marginTop: -120,
     alignItems: "center",
     justifyContent: "center",
     backgroundColor: colors.white,
   },
   image: {
-    marginVertical: 60,
+    marginVertical: 50,
+    width: 250,
+    height: 250,
   },
   title: {
     fontSize: 24,
-    color: colors.black,
+    fontWeight: "bold",
+    color: colors.blueGlico,
     textAlign: "center",
-    // fontFamily: 'OpenSans-Bold',
-    marginHorizontal: 60,
+    marginHorizontal: 50,
   },
   text: {
     fontSize: 14,
     color: colors.gray,
     textAlign: "center",
-    // fontFamily: 'OpenSans-SemiBold',
     marginHorizontal: 60,
-    marginTop: 20,
+    marginTop: 15,
   },
   dotStyle: {
-    backgroundColor: colors.blueFaded,
+    backgroundColor: colors.gray,
   },
   activeDotStyle: {
-    backgroundColor: colors.blue,
+    backgroundColor: colors.blueGlico,
   },
   rightTextWrapper: {
     width: 60,
@@ -126,8 +152,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   rightText: {
-    color: colors.blue,
+    color: colors.black,
     fontSize: 14,
+    fontWeight: "bold",
   },
   leftTextWrapper: {
     width: 70,
@@ -138,20 +165,26 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   leftText: {
-    color: colors.blue,
+    fontWeight: "bold",
+    color: colors.black,
     fontSize: 14,
   },
   doneButtonWrapper: {
-    flex: 1,
-    paddingLeft: 35,
-    paddingRight: 50,
-    paddingVertical: 10,
-    borderRadius: 25,
-    marginRight: -40,
+    height: 28,
+    marginTop: 35,
+    fontSize: 4,
+    borderRadius: 20,
+    alignSelf: "flex-end",
+    marginRight: 20,
+    backgroundColor: "grey",
+    borderBottomWidth: 0,
+    marginHorizontal: 0,
+    marginVertical: 0,
   },
   doneButtonText: {
-    fontSize: 14,
-    textAlign: "center",
+    fontSize: 12,
+    padding: 0,
+    flexWrap: "nowrap",
     color: colors.white,
   },
 });
