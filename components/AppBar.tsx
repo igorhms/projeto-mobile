@@ -9,25 +9,31 @@ const AppBar = ({title, navigation }) => {
     return (
       <Appbar.Header style={styles.appBar}>
         <Appbar.Content style={styles.title} color = '#ffffff' title={title} />
-        <Appbar.Action style={styles.icon} size={55} icon="menu" onPress={() => navigation.navigate('Teste')} />
+        <Appbar.Action style={styles.icon} size={60} icon="menu" onPress={() => navigation.navigate('Teste')} />
       </Appbar.Header>
     );
   };
 
 const styles = StyleSheet.create({
     appBar: {
-        backgroundColor: colors.LightBlue,
+        backgroundColor: colors.blueGlico,
         width: "100%",
-        height: "18%",
         flexDirection: 'row',
+        marginTop: "3%",
+        marginBottom: 5,
         justifyContent: 'space-between',
+        borderBottomColor: 'black',
+        height: 55
     },
     title: {
         color: '#ffffff',
-        marginTop: "-3%",
+        alignItems: 'center',
+        justifyContent: 'center',
+
     },
     icon: {
         marginTop: "0%",
+        alignItems: 'flex-end',
     }
 });
 
