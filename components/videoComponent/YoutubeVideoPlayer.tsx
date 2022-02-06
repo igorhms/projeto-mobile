@@ -6,16 +6,16 @@ import Colors from "../../constants/Colors";
 
 const YoutubeVideoPlayer = (props) => {
 
-    const [playing, setPlaying] = useState(false);
+    const [playing, setPlaying] = useState<boolean>(false);
 
-    const onStateChange = useCallback((state) => {
-        if (state === "ended") {
-            setPlaying(false);
-        }
-    });
+    const onStateChange = useCallback((state:any): void => 
+            state==="false"?setPlaying(false):null,
+            [setPlaying]
+    );
+    
     return (
         <View style= {styles.container}>
-            <View style= {styles.teste}>
+            <View>
                 <YoutubePlayer 
                     height={200}
                     play={playing}

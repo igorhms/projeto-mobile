@@ -17,14 +17,15 @@ import Fonts from "../../constants/Fonts";
 
 const VideoList = (props) => {
 
-    const [isLoading, setLoading] = useState(true);
+    const [isLoading, setLoading] = useState<boolean>(true);
     const [data, setData] = useState([]);
-    const [videoId, setId] = useState("");
-    const [videoTitle, setVideoTitle] = useState("");
-    const [videoDescription, setVideoDescription] = useState("");
-    const [selectedIndex, setIndex] = useState(0);
-    const [flatListRef, setFlatListRef] = useState();
-    const [viewPosition, setViewPosition] = useState();
+    const [videoId, setId] = useState<string>("");
+    const [videoTitle, setVideoTitle] = useState<string>("");
+    const [videoDescription, setVideoDescription] = useState<string>("");
+    const [selectedIndex, setIndex] = useState<number>(0);
+    const [flatListRef, setFlatListRef] = useState<FlatList>();
+    //const [viewPosition, setViewPosition] = useState<number>();
+    const [offsetCpmtemt, setOffsetContent] = useState<number>()
 
     useEffect(() => {
 
@@ -52,6 +53,7 @@ const VideoList = (props) => {
         if (selectedIndex == data.length - 1) {
             return;
         }
+        setOffsetContent(-30)
         setVideoMetadata(selectedIndex + 1, data[selectedIndex + 1].id, data[selectedIndex + 1].snippet.title, data[selectedIndex + 1].snippet.description)
     }
 
@@ -59,6 +61,7 @@ const VideoList = (props) => {
         if (selectedIndex == 0) {
             return;
         }
+        setOffsetContent(60)
         setVideoMetadata(selectedIndex - 1, data[selectedIndex - 1].id, data[selectedIndex - 1].snippet.title, data[selectedIndex - 1].snippet.description)
     }
     
@@ -66,15 +69,17 @@ const VideoList = (props) => {
         flatListRef.scrollToIndex({
             index: selectedIndex,
             animated:true,
-            viewPosition:viewPosition
-
+            viewOffset:offsetCpmtemt
         });
      }
 
+    const getItemLayout = (data, index) =>{
+        return{length:76, offset: 76*selectedIndex, index}
+    }
     const PreviusAndNextButtom = () => {
         return (
             <View style={styles.prevAndNextBtn}>
-                <TouchableOpacity onPress={() => { previusBtn() , onScrollToindex(), setViewPosition(0.2) }} 
+                <TouchableOpacity onPress={() => { previusBtn() , onScrollToindex()}} 
                 >
                     <Text style={[selectedIndex == 0 ? { opacity: 0 } : { opacity: 1 },
                           styles.prevAndNextBtnText]}
@@ -82,7 +87,7 @@ const VideoList = (props) => {
                               {"<<Voltar"}
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { nextBtn(),onScrollToindex(), setViewPosition(0) }}>
+                <TouchableOpacity onPress={() => { nextBtn(),onScrollToindex() }}>
                     <Text style={[selectedIndex == data.length - 1 ? { opacity: 0 } : { opacity: 1 },
                          styles.prevAndNextBtnText]}
                          >
@@ -125,9 +130,9 @@ const VideoList = (props) => {
                     <FlatList
                         style={{marginBottom:20}}
                         ref={(ref)=> setFlatListRef(ref)}
-                        initialScrollIndex={selectedIndex}
                         data={data}
                         keyExtractor={(item) => item.id}
+                        getItemLayout = {getItemLayout}
                         renderItem={({ item, index }) => (
 
                             <TouchableOpacity
@@ -136,7 +141,7 @@ const VideoList = (props) => {
                                 }}
                             >
                                 <PlayListCards
-                                    style={index === selectedIndex ? { backgroundColor: Colors.darkBlue, color: "#FFFFFF" } : { backgroundColor: Colors.white }}
+                                    style={index === selectedIndex ? { backgroundColor: Colors.darkBlue, color:"#ffff"} : { backgroundColor: Colors.white }}
                                     imageUrl={item.snippet.thumbnails.high.url}
                                     title={item.snippet.title}
                                 />
@@ -174,11 +179,11 @@ const styles = StyleSheet.create({
     },
     descripitionContainer: {
         paddingHorizontal: 20,
-        height:100
+        maxHeight:100,
     },
     videosRelacionados: {
         paddingHorizontal: 20,
-        marginTop:0,
+        marginTop:10,
     },
     prevAndNextBtn: {
         flexDirection: "row",

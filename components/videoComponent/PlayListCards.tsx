@@ -3,7 +3,7 @@ import { View, Image, Text, StyleSheet} from 'react-native';
 import Fonts from "../../constants/Fonts";
 import Colors from "../../constants/Colors";
 
-const PlayListCard = (props) => {
+const PlayListCard  = (props) => {
     return (
         <View style={[props.style, styles.container]}>
          
