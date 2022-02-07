@@ -16,7 +16,7 @@ import Colors from "../../constants/Colors";
 import Fonts from "../../constants/Fonts";
 
 const VideoList = (props) => {
-
+0
     const [isLoading, setLoading] = useState<boolean>(true);
     const [data, setData] = useState([]);
     const [videoId, setId] = useState<string>("");
@@ -24,8 +24,6 @@ const VideoList = (props) => {
     const [videoDescription, setVideoDescription] = useState<string>("");
     const [selectedIndex, setIndex] = useState<number>(0);
     const [flatListRef, setFlatListRef] = useState<FlatList>();
-    //const [viewPosition, setViewPosition] = useState<number>();
-    const [offsetCpmtemt, setOffsetContent] = useState<number>()
 
     useEffect(() => {
 
@@ -53,7 +51,6 @@ const VideoList = (props) => {
         if (selectedIndex == data.length - 1) {
             return;
         }
-        setOffsetContent(-30)
         setVideoMetadata(selectedIndex + 1, data[selectedIndex + 1].id, data[selectedIndex + 1].snippet.title, data[selectedIndex + 1].snippet.description)
     }
 
@@ -61,15 +58,15 @@ const VideoList = (props) => {
         if (selectedIndex == 0) {
             return;
         }
-        setOffsetContent(60)
+
         setVideoMetadata(selectedIndex - 1, data[selectedIndex - 1].id, data[selectedIndex - 1].snippet.title, data[selectedIndex - 1].snippet.description)
     }
     
-    const onScrollToindex = () => {
+    const onScrollToindex = (setOffset) => {
         flatListRef.scrollToIndex({
             index: selectedIndex,
             animated:true,
-            viewOffset:offsetCpmtemt
+            viewOffset:setOffset
         });
      }
 
@@ -79,7 +76,7 @@ const VideoList = (props) => {
     const PreviusAndNextButtom = () => {
         return (
             <View style={styles.prevAndNextBtn}>
-                <TouchableOpacity onPress={() => { previusBtn() , onScrollToindex()}} 
+                <TouchableOpacity onPress={() => { previusBtn() , onScrollToindex(60)}} 
                 >
                     <Text style={[selectedIndex == 0 ? { opacity: 0 } : { opacity: 1 },
                           styles.prevAndNextBtnText]}
@@ -87,7 +84,7 @@ const VideoList = (props) => {
                               {"<<Voltar"}
                     </Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => { nextBtn(),onScrollToindex() }}>
+                <TouchableOpacity onPress={() => { nextBtn(),onScrollToindex(-80) }}>
                     <Text style={[selectedIndex == data.length - 1 ? { opacity: 0 } : { opacity: 1 },
                          styles.prevAndNextBtnText]}
                          >
@@ -131,8 +128,10 @@ const VideoList = (props) => {
                         style={{marginBottom:20}}
                         ref={(ref)=> setFlatListRef(ref)}
                         data={data}
+                        initialNumToRender={5}
                         keyExtractor={(item) => item.id}
                         getItemLayout = {getItemLayout}
+                        showsVerticalScrollIndicator = {false}
                         renderItem={({ item, index }) => (
 
                             <TouchableOpacity
