@@ -1,8 +1,9 @@
 import { useState } from "react";
 import React from "react";
 import Home from "./screens/Home";
+import Videos from "./screens/Videos";
 import IntroScreen from "./screens/IntroScreen";
-import VideoList  from "./components/videoComponent/VideoList";
+import Card  from "./components/cards/Card";
 
 import { 
   useFonts,
@@ -45,7 +46,7 @@ const App = () => {
   return (
     <>
       {showIntroscreen && <IntroScreen handleDone={handleIntroScreen} />}
-      {!showIntroscreen && <VideoList playListId = {PlayListsIds.playListsIds.sosHiper}/>}
+      {!showIntroscreen && <Videos playListId = {PlayListsIds.playListsIds.sosHipo}/>}
     </>
   );
 };

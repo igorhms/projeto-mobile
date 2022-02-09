@@ -15,18 +15,17 @@ const YoutubeVideoPlayer = (props) => {
     
     return (
         <View style= {styles.container}>
-            <View>
+            <View style= {styles.videoContainer}>
                 <YoutubePlayer 
-                    height={200}
+                    height={styles.videoContainer.height}
                     play={playing}
                     videoId={props.videoId}
                     onChangeState={onStateChange}
                 />
+            </View> 
                 <Text style = {styles.titleText}>     
                     {props.title}
                 </Text> 
-            </View>   
-            
         </View>
     );
 
@@ -39,14 +38,21 @@ const styles = StyleSheet.create({
     container: {
        marginTop:20,
        width:"100%",
-       height:200, 
+       height:200,
+       maxHeight:300,
+       alignItems: "center",
     },
- 
+    videoContainer:{
+        width:"100%",
+        height:200,
+        maxHeight:300
+    },
     titleText:{ 
         fontFamily: Fonts.fonts.boldText,
         fontSize:14,
         color: Colors.darkBlue,
-        paddingHorizontal:20
+        paddingHorizontal:20,
+        alignSelf:"flex-start"
     },
 });
 
