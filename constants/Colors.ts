@@ -9,4 +9,6 @@ export default {
   LightBlue: "#01a7de",
   blueFaded: "#8D8FAD",
   white: "#FFFFFF",
+  lightBlue: "#17d7f1",
+  darkBlue: "#0047ff"
 };

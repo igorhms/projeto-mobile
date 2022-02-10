@@ -14,6 +14,10 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+<<<<<<< HEAD
+    "@expo-google-fonts/poppins": "^0.2.2",
+=======
+>>>>>>> b14530b419ae71110982c9caef400a4a06e2aeee
     "@expo/vector-icons": "^12.0.0",
     "@react-native-community/masked-view": "^0.1.11",
     "@react-navigation/bottom-tabs": "^6.0.5",
@@ -22,6 +26,10 @@
     "@react-navigation/native-stack": "^6.1.0",
     "caniuse-lite": "^1.0.30001299",
     "expo": "~44.0.0",
+<<<<<<< HEAD
+    "expo-app-loading": "~1.3.0",
+=======
+>>>>>>> b14530b419ae71110982c9caef400a4a06e2aeee
     "expo-asset": "~8.4.4",
     "expo-constants": "~13.0.0",
     "expo-font": "~10.0.4",

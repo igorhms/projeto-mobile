@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { Appbar } from 'react-native-paper';
-import colors from "../constants/Colors";
+import colors from "../../constants/Colors";
 
 
 const AppBar = ({title, navigation }) => {
