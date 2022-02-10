@@ -25,7 +25,8 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/icon.png",
         "backgroundColor": "#01A6DE"
-      }
+      },
+      "package": "io.iftm.sosdiabetes"
     },
     "web": {
       "favicon": "./assets/images/favicon.png"

@@ -4,6 +4,8 @@ import AppBar from '../components/appBar/AppBar';
 import Card from '../components/card/Card';
 import { DATA } from "../util/data";
 
+
+
 const Home= ({navigation}) => {
   return (
     <SafeAreaView>

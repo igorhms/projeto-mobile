@@ -16,6 +16,7 @@ import {
   Poppins_900Black,
 } from '@expo-google-fonts/poppins';
 import AppLoading from 'expo-app-loading';
+import Item from "./components/Item";
 
 const Stack = createNativeStackNavigator();
 
@@ -50,7 +51,7 @@ if(!fontsLoaded){
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
-        <Stack.Screen name="Teste" component={Teste} />
+        <Stack.Screen name="Item" component={Item} options={{headerShown:false}}/>
       </Stack.Navigator>
     </NavigationContainer>}
     </>

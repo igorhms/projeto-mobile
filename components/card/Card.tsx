@@ -1,12 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, TouchableOpacity, Image, View } from 'react-native';
+import { black } from "react-native-paper/lib/typescript/styles/colors";
 import Colors from "../../constants/Colors";
 import Fonts from "../../constants/Fonts";
 
 const Card = ({ item, navigation }) => (
     <TouchableOpacity style={[styles.containerItem, styles.shadows]}
         onPress={() =>
-            navigation.navigate('Telas', { item })
+            navigation.navigate('Item', { item })
         }>
         <Text style = {styles.titleText} >  
              {item.title}
@@ -26,12 +27,14 @@ const styles = StyleSheet.create({
     containerItem: {
         height: 188,
         width: 168,
+        flex: 1,
         backgroundColor: "#ffff",
         borderRadius:10,
         alignItems:"center",
-        justifyContent: "space-between",
+        justifyContent: 'center',
         paddingHorizontal: 10,
-        paddingVertical:10
+        paddingVertical:10,
+        margin: 6,
     },
     imageStyles:{
         width:"100%",
@@ -63,7 +66,7 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.55,
         shadowRadius: 18,
         
-        elevation: 16,
+        elevation: 8,
     },
 
 })
