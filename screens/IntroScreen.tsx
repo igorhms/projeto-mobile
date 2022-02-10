@@ -138,7 +138,8 @@ const styles = StyleSheet.create({
     marginTop: 15,
   },
   dotStyle: {
-    backgroundColor: colors.gray,
+    backgroundColor: "lavender",
+    borderColor: colors.gray,
   },
   activeDotStyle: {
     backgroundColor: colors.blueGlico,
@@ -154,7 +155,7 @@ const styles = StyleSheet.create({
   rightText: {
     color: colors.black,
     fontSize: 14,
-    fontWeight: "bold",
+    fontWeight: "600",
   },
   leftTextWrapper: {
     width: 70,
@@ -165,7 +166,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   leftText: {
-    fontWeight: "bold",
+    fontWeight: "600",
     color: colors.black,
     fontSize: 14,
   },

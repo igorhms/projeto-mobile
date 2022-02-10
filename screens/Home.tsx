@@ -1,13 +1,15 @@
 import React from 'react';
-import { SafeAreaView, Text } from 'react-native';
+import {StyleSheet, SafeAreaView, Text, View } from 'react-native';
+import AppBar from '../components/AppBar';
 
 // import { Container } from './styles';
 
-const Home: React.FC = () => {
+const Home= ({navigation}) => {
   return (
-      <SafeAreaView>
-          <Text>Welcome to the Home</Text>
-      </SafeAreaView>
+    <SafeAreaView>
+      <AppBar title='SOS Diabetes' navigation={navigation}/>
+      <Text>Welcome to the Home</Text>
+    </SafeAreaView>
   );
 }
 

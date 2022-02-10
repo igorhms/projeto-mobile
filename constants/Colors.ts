@@ -6,6 +6,7 @@ export default {
   black: "#000000",
   gray: "#666666",
   blue: "#1C215D",
+  LightBlue: "#01a7de",
   blueFaded: "#8D8FAD",
   white: "#FFFFFF",
 };
