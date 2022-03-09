@@ -1,10 +1,9 @@
-import { useState } from "react";
-import React from "react";
-import Home from "./screens/Home";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import React, { useState } from "react";
+import "react-native-gesture-handler";
+import DrawerComponent from "./components/DrawerComponent";
 import IntroScreen from "./screens/IntroScreen";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Teste from "./components/Teste";
 
 const Stack = createNativeStackNavigator();
 
@@ -16,14 +15,12 @@ const App = () => {
 
   return (
     <>
-    {showIntroscreen && <IntroScreen handleDone={handleIntroScreen} />}
-    {!showIntroscreen &&
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
-        <Stack.Screen name="Teste" component={Teste} />
-      </Stack.Navigator>
-    </NavigationContainer>}
+      {showIntroscreen && <IntroScreen handleDone={handleIntroScreen} />}
+      {!showIntroscreen && (
+        <NavigationContainer>
+          <DrawerComponent />
+        </NavigationContainer>
+      )}
     </>
   );
 };
