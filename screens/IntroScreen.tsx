@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Text, StyleSheet, StatusBar, Image } from "react-native";
-import { Button } from "react-native-elements";
+import { Image, StatusBar, StyleSheet, Text, View } from "react-native";
 import AppIntroSlider from "react-native-app-intro-slider";
+import { Button } from "react-native-elements";
 import colors from "../constants/Colors";
 
 const data = [
