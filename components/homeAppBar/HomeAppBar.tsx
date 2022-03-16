@@ -4,7 +4,7 @@ import { Appbar } from 'react-native-paper';
 import colors from "../../constants/Colors";
 
 
-const AppBar = ({title, navigation }) => {
+const HomeAppBar = ({title, navigation }) => {
     
     return (
       <Appbar.Header style={styles.appBar}>
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         alignItems: 'center',
         justifyContent: 'center',
-
     },
     icon: {
         marginTop: "0%",
@@ -37,4 +36,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default AppBar;
+export default HomeAppBar;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, SafeAreaView, Text, View, FlatList } from 'react-native';
-import AppBar from '../components/appBar/AppBar';
+import HomeAppBar from '../components/homeAppBar/HomeAppBar';
 import Card from '../components/card/Card';
 import { DATA } from "../util/data";
 
@@ -9,7 +9,7 @@ import { DATA } from "../util/data";
 const Home= ({navigation}) => {
   return (
     <SafeAreaView>
-      <AppBar title='SOS Diabetes' navigation={navigation}/>
+      <HomeAppBar title='SOS Diabetes' navigation={navigation}/>
       <FlatList
       style={styles.list}
                 data={DATA}

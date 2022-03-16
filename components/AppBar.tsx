@@ -30,6 +30,8 @@ const styles = StyleSheet.create({
         color: '#ffffff',
         alignItems: 'center',
         justifyContent: 'center',
+        marginLeft: -20,
+        marginRight: -20
 
     },
     icon: {

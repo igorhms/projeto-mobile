@@ -15,12 +15,12 @@ export const DATA = [
     {
         id: 3,
         img: require('../assets/images/7comportamentos/CARD7comportamentos.png'),
-        title: '7 Comportamentos',
+        title: 'Os 7 Comportamentos',
         descricao: 'teste teste teste teste teste teste'
     },
     {
         id: 4,
-        img: require('../assets/images/icon.png'),
+        img: require('../assets/images/SOS/CARDTIPOSDEDIABETES.png'),
         title: 'Tipos de diabetes',
         descricao: 'teste teste teste teste teste teste'
     }
