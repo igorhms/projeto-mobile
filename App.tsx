@@ -1,11 +1,4 @@
-import React,{ useState } from "react";
-import Home from "./screens/Home";
-import IntroScreen from "./screens/IntroScreen";
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Teste from "./components/Teste";
-import { 
-  useFonts,
+import {
   Poppins_100Thin,
   Poppins_300Light,
   Poppins_400Regular,
@@ -14,30 +7,36 @@ import {
   Poppins_700Bold,
   Poppins_800ExtraBold,
   Poppins_900Black,
-} from '@expo-google-fonts/poppins';
-import AppLoading from 'expo-app-loading';
-import Item from "./components/Item";
+  useFonts
+} from "@expo-google-fonts/poppins";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import AppLoading from "expo-app-loading";
+import { default as React, useState } from "react";
+import { StatusBar } from "react-native";
+import "react-native-gesture-handler";
+import DrawerComponent from "./components/DrawerComponent";
+import IntroScreen from "./screens/IntroScreen";
 
 const Stack = createNativeStackNavigator();
 
 const App = () => {
+  //carregando as fontes
+  const [fontsLoaded, error] = useFonts({
+    Poppins_100Thin,
+    Poppins_300Light,
+    Poppins_400Regular,
+    Poppins_500Medium,
+    Poppins_600SemiBold,
+    Poppins_700Bold,
+    Poppins_800ExtraBold,
+    Poppins_900Black,
+  });
 
-//carregando as fontes
-const [fontsLoaded, error] = useFonts({
-  Poppins_100Thin,
-  Poppins_300Light,
-  Poppins_400Regular,
-  Poppins_500Medium,
-  Poppins_600SemiBold,
-  Poppins_700Bold,
-  Poppins_800ExtraBold,
-  Poppins_900Black
-});  
-
-// verificando se as fontes carregaram, se não o app mostra o icone de carregamento
-if(!fontsLoaded){ 
- <AppLoading/>
-}
+  // verificando se as fontes carregaram, se não o app mostra o icone de carregamento
+  if (!fontsLoaded) {
+    <AppLoading />;
+  }
 
   const [showIntroscreen, setShowIntroScreen] = useState(true);
   const handleIntroScreen = () => {
@@ -46,14 +45,13 @@ if(!fontsLoaded){
 
   return (
     <>
-    {showIntroscreen && <IntroScreen handleDone={handleIntroScreen} />}
-    {!showIntroscreen &&
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
-        <Stack.Screen name="Item" component={Item} options={{headerShown:false}}/>
-      </Stack.Navigator>
-    </NavigationContainer>}
+      <StatusBar translucent backgroundColor="transparent" />
+      {showIntroscreen && <IntroScreen handleDone={handleIntroScreen} />}
+      {!showIntroscreen && (
+        <NavigationContainer>
+          <DrawerComponent />
+        </NavigationContainer>
+      )}
     </>
   );
 };
