@@ -6,7 +6,7 @@ import Fonts from "../../constants/Fonts";
 const Card = ({ item, navigation }) => (
   <TouchableOpacity
     style={[styles.containerItem, styles.shadows]}
-    onPress={() => navigation.navigate("Item", { item })}
+    onPress={() => navigation.navigate("SOS Hiper", { item })}
   >
     <Text style={styles.titleText}>{item.title}</Text>
 

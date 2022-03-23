@@ -12,8 +12,7 @@ const DrawerComponent = (navigation) => {
       screenOptions={{
         headerStyle: {
           backgroundColor: colors.blueGlico,
-          borderBottomRightRadius: 4,
-          borderBottomLeftRadius: 4,
+          height: 90,
         },
         headerTintColor: "#fff",
         headerTitleAlign: "center",
