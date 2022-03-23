@@ -1,6 +1,7 @@
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import React from "react";
 import Comportamentos from "../components/Teste";
+import VideoList from "../components/videoComponent/VideoList";
 import colors from "../constants/Colors";
 import HomeScreen from "../screens/Home";
 
@@ -22,10 +23,10 @@ const DrawerComponent = (navigation) => {
       }}
     >
       <Drawer.Screen name="Home" component={HomeScreen} />
-      <Drawer.Screen name="SOS Hipo" component={Comportamentos} />
-      <Drawer.Screen name="SOS Hiper" component={Comportamentos} />
-      <Drawer.Screen name="7 Comportamentos" component={Comportamentos} />
-      <Drawer.Screen name="Tipos de diabetes" component={Comportamentos} />
+      <Drawer.Screen name="SOS Hipo" component={VideoList} />
+      <Drawer.Screen name="SOS Hiper" component={VideoList} />
+      <Drawer.Screen name="7 Comportamentos" component={VideoList} />
+      <Drawer.Screen name="Tipos de diabetes" component={VideoList} />
     </Drawer.Navigator>
   );
 };
