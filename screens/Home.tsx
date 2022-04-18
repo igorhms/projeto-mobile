@@ -1,16 +1,28 @@
-import React from 'react';
-import {StyleSheet, SafeAreaView, Text, View } from 'react-native';
-import AppBar from '../components/AppBar';
+import React from "react";
+import { FlatList, SafeAreaView, StyleSheet } from "react-native";
+import Card from "../components/card/Card";
+import { DATA } from "../util/data";
 
-// import { Container } from './styles';
-
-const Home= ({navigation}) => {
+const Home = ({ navigation }) => {
   return (
     <SafeAreaView>
-      <AppBar title='SOS Diabetes' navigation={navigation}/>
-      <Text>Welcome to the Home</Text>
+      {/* <HomeAppBar title='SOS Diabetes' navigation={navigation}/> */}
+      <FlatList
+        style={styles.list}
+        data={DATA}
+        numColumns={2}
+        renderItem={({ item }) => <Card item={item} navigation={navigation} />}
+        keyExtractor={(item) => item.id}
+      />
     </SafeAreaView>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  list: {
+    height: "100%",
+    marginTop: "7%",
+  },
+});
 
 export default Home;
