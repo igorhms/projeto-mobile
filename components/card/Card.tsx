@@ -1,3 +1,4 @@
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity } from "react-native";
 import Colors from "../../constants/Colors";
@@ -36,30 +37,22 @@ const styles = StyleSheet.create({
   descriptionText: {
     flex: 1,
     flexWrap: "wrap",
-    fontFamily: Fonts.fonts.ligthText,
-    fontSize: 11,
-    lineHeight: 12,
-    marginTop: 10,
+    fontSize: 13,
+    lineHeight: 14,
+    paddingTop: 10,
+    fontWeight: '500',
     textAlign: "center",
   },
   titleText: {
     flex: 1,
     flexWrap: "wrap",
-    fontFamily: Fonts.fonts.boldText,
-    fontSize: 13,
+    fontFamily: Fonts.fonts.extraBoldText,
+    fontSize: 15,
     color: Colors.blueGlico,
     textAlign: "center",
   },
   shadows: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 8,
-    },
-    shadowOpacity: 0.55,
-    shadowRadius: 18,
-
-    elevation: 8,
+    elevation: 4,
   },
 });
 

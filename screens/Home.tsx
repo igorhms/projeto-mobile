@@ -5,14 +5,13 @@ import { DATA } from "../util/data";
 
 const Home = ({ navigation }) => {
   return (
-    <SafeAreaView>
-      {/* <HomeAppBar title='SOS Diabetes' navigation={navigation}/> */}
+    <SafeAreaView style={{ backgroundColor: "#fefefe" }}>
       <FlatList
         style={styles.list}
         data={DATA}
         numColumns={2}
         renderItem={({ item }) => <Card item={item} navigation={navigation} />}
-        keyExtractor={(item) => item.id}
+        keyExtractor={(item) => String(item.id)}
       />
     </SafeAreaView>
   );
@@ -21,7 +20,7 @@ const Home = ({ navigation }) => {
 const styles = StyleSheet.create({
   list: {
     height: "100%",
-    marginTop: "7%",
+    marginTop: "6%",
   },
 });
 

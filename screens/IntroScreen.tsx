@@ -6,18 +6,18 @@ import colors from "../constants/Colors";
 
 const data = [
   {
-    title: "Save time by tracking your studies",
-    text: "Schedule your classes, assignments, quizzes and more",
+    title: "Seja bem-vindo ao nosso aplicativo",
+    text: "Temos o objetivo de te ajudar a lembrar em manter diariamente os cuidados com o diabetes",
     image: require("../assets/images/intro1.png"),
   },
   {
-    title: "Stay on top of your education",
-    text: "Reduce your stress, increase your productivity",
+    title: "O autocuidado é o mais importante",
+    text: "PESISTIR e INSISTIR no autocuidado é essencial para garantir uma vida longa com boa qualidade de vida",
     image: require("../assets/images/intro2.png"),
   },
   {
-    title: "Spend more time doing the things you love",
-    text: "Get started within five minutes",
+    title: "Saiba em que nosso App pode te ajudar",
+    text: "Assista os vídeos e descubra em que o app pode trazer para você",
     image: require("../assets/images/intro3.png"),
   },
 ];
