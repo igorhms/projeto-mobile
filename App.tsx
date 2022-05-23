@@ -17,6 +17,7 @@ import { StatusBar } from "react-native";
 import "react-native-gesture-handler";
 import DrawerComponent from "./components/DrawerComponent";
 import IntroScreen from "./screens/IntroScreen";
+import Videos from "./screens/Videos"
 
 const Stack = createNativeStackNavigator();
 
@@ -50,6 +51,9 @@ const App = () => {
       {!showIntroscreen && (
         <NavigationContainer>
           <DrawerComponent />
+          <Stack.Screen
+            name="Videos" component={Videos}
+          />
         </NavigationContainer>
       )}
     </>

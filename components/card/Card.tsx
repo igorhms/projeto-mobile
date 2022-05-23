@@ -4,9 +4,9 @@ import Colors from "../../constants/Colors";
 import Fonts from "../../constants/Fonts";
 
 const Card = ({ item, navigation }) => (
-  <TouchableOpacity
+  <TouchableOpacity 
     style={[styles.containerItem, styles.shadows]}
-    onPress={() => navigation.navigate("SOS Hiper", { item })}
+    onPress={() => navigation.navigate(item.navigateTo, { item })}
   >
     <Text style={styles.titleText}>{item.title}</Text>
 
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: "wrap",
     fontFamily: Fonts.fonts.boldText,
-    fontSize: 13,
+    fontSize: 12,
     color: Colors.blueGlico,
     textAlign: "center",
   },
