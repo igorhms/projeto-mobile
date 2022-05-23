@@ -6,6 +6,7 @@ import VideoList from "../components/videoComponent/VideoList";
 import colors from "../constants/Colors";
 import HomeScreen from "../screens/Home";
 import { useNavigation } from "@react-navigation/native";
+import { Icon } from "react-native-elements";
 
 const Drawer = createDrawerNavigator();
 
@@ -15,26 +16,33 @@ const DrawerComponent = () => {
     <Drawer.Navigator
       drawerContent={(props) => (
         <View>
-          <View style={{ height: 150 }}>
-            <LinearGradient
-              colors={[colors.LightBlue, colors.blueGlico, colors.blue]}
-              style={{ flex: 1, opacity: 1, borderBottomLeftRadius: 4, borderBottomRightRadius: 4}}
-            ></LinearGradient>
-          </View>
           <DrawerItem
             label={"Home"}
+            icon={() => <Icon size={25} name="home" />}
             onPress={() => navigation.navigate("Home")}
           ></DrawerItem>
-          <DrawerItem label={"SOS Hipo"} onPress={() => null} {...props} />
-          <DrawerItem label={"SOS Hiper"} onPress={() => null} {...props} />
           <DrawerItem
-            label={"7 comportamentos"}
-            onPress={() => null}
+            label={"SOS Hipo"}
+            icon={() => <Icon size={25} name="play-circle-filled" />}
+            onPress={() => navigation.navigate("SOS Hiper")}
+            {...props}
+          />
+          <DrawerItem
+            label={"SOS Hiper"}
+            icon={() => <Icon size={25} name="play-circle-filled" />}
+            onPress={() => navigation.navigate("SOS Hiper")}
             {...props}
           />
           <DrawerItem
             label={"Tipos de diabetes"}
-            onPress={() => null}
+            icon={() => <Icon size={25} name="play-circle-filled" />}
+            onPress={() => navigation.navigate("SOS Hiper")}
+            {...props}
+            />
+          <DrawerItem
+            label={"7 comportamentos"}
+            icon={() => <Icon size={25} name="info" />}
+            onPress={() => navigation.navigate("SOS Hiper")}
             {...props}
           />
         </View>
