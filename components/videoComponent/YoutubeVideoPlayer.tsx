@@ -1,7 +1,6 @@
 import React, { useCallback, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 import YoutubePlayer from "react-native-youtube-iframe";
-import Colors from "../../constants/Colors";
 
 const YoutubeVideoPlayer = (props) => {
   const [playing, setPlaying] = useState<boolean>(false);
@@ -18,6 +17,7 @@ const YoutubeVideoPlayer = (props) => {
           height={styles.videoContainer.height}
           play={playing}
           videoId={props.videoId}
+          webViewStyle={styles.teste}
           onChangeState={onStateChange}
         />
       </View>
@@ -28,16 +28,19 @@ const YoutubeVideoPlayer = (props) => {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 200,
-    maxHeight: 300,
-    marginTop: 5,
-    alignItems: "center",
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+    display: "flex",
+    elevation: 2
   },
   videoContainer: {
     width: "100%",
+    zIndex: 1,
+    borderRadius: 10,
     height: 230,
     maxHeight: 300,
   },
+  teste: {},
 });
 
 export default YoutubeVideoPlayer;
