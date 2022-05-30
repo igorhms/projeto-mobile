@@ -128,6 +128,7 @@ const VideoList = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
+
       <YoutubeVideoPlayer videoId={videoId} title={videoTitle} />
       {isLoading ? (
         <ActivityIndicator
@@ -140,55 +141,61 @@ const VideoList = (props) => {
           <View>
             <PreviusAndNextButtom />
           </View>
-          <View style={styles.descriptionBox}>
-            <View>
-              <TextGradient style={styles.subTitleText}>Descrição</TextGradient>
-            </View>
-            <ScrollView>
-              <View>
-                <Text style={styles.descriptionText}>{videoDescription}</Text>
-              </View>
-            </ScrollView>
-          </View>
-          <View style={styles.videosRelacionados}>
-            <TextGradient style={styles.subTitleText}>
-              Vídeos Relacionados
-            </TextGradient>
-          </View>
 
-          <FlatList
-            style={{ marginBottom: 20 }}
-            ref={(ref) => setFlatListRef(ref)}
-            data={data}
-            initialNumToRender={5}
-            keyExtractor={(item) => item.id}
-            getItemLayout={getItemLayout}
-            showsVerticalScrollIndicator={false}
-            renderItem={({ item, index }) => (
-              <TouchableOpacity
-                onPress={() => {
-                  setVideoMetadata(
-                    index,
-                    item.id,
-                    item.snippet.title,
-                    item.snippet.description
-                  );
-                }}
-              >
-                <PlayListCards
-                  style={
-                    index === selectedIndex
-                      ? { backgroundColor: Colors.darkBlue, color: "#ffff" }
-                      : { backgroundColor: Colors.white }
-                  }
-                  imageUrl={item.snippet.thumbnails.high.url}
-                  title={item.snippet.title}
-                />
-              </TouchableOpacity>
-            )}
-          />
+          <ScrollView style={{ flex: 1 }}>
+            <View style={styles.descriptionBox}>
+              <View>
+                <TextGradient style={styles.subTitleText}>Descrição</TextGradient>
+              </View>
+              <ScrollView>
+                <View>
+                  <Text style={styles.descriptionText}>{videoDescription}</Text>
+                </View>
+              </ScrollView>
+            </View>
+
+            <View style={styles.videosRelacionados}>
+              <TextGradient style={styles.subTitleText}>
+                Vídeos Relacionados
+              </TextGradient>
+            </View>
+
+            <FlatList
+              style={{ marginBottom: 20 }}
+              ref={(ref) => setFlatListRef(ref)}
+              data={data}
+              initialNumToRender={5}
+              keyExtractor={(item) => item.id}
+              getItemLayout={getItemLayout}
+              showsVerticalScrollIndicator={false}
+              renderItem={({ item, index }) => (
+                <TouchableOpacity
+                  onPress={() => {
+                    setVideoMetadata(
+                      index,
+                      item.id,
+                      item.snippet.title,
+                      item.snippet.description
+                    );
+                  }}
+                >
+                  <PlayListCards
+                    style={
+                      index === selectedIndex
+                        ? { backgroundColor: Colors.blueGlico, color: "#ffff" }
+                        : { backgroundColor: Colors.white }
+                    }
+                    imageUrl={item.snippet.thumbnails.high.url}
+                    title={item.snippet.title}
+                  />
+                </TouchableOpacity>
+              )}
+            />
+          </ScrollView>
+
         </View>
       )}
+
     </SafeAreaView>
   );
 };
