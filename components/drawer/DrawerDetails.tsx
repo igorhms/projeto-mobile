@@ -64,7 +64,7 @@ const DrawerDetails = (props) => {
         labelStyle={styles.lastItem}
         label={"Sobre"}
         icon={() => <Icon size={30} color={Colors.blueGlico} name="help" />}
-        onPress={() => navigation.navigate("SOS Hiper")}
+        onPress={() => (navigation)}
       />
     </View>
   );
