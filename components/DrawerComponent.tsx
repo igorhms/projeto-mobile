@@ -1,19 +1,26 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createDrawerNavigator, DrawerItem } from "@react-navigation/drawer";
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import Comportamentos from "../components/Teste";
+import { View } from "react-native";
 import VideoList from "../components/videoComponent/VideoList";
 import colors from "../constants/Colors";
 import HomeScreen from "../screens/Home";
+import { useNavigation } from "@react-navigation/native";
+import { Icon } from "react-native-elements";
+import { color } from "react-native-reanimated";
+import DrawerDetails from "./drawer/DrawerDetails";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerComponent = (navigation) => {
+const DrawerComponent = () => {
+  const navigation = useNavigation();
   return (
     <Drawer.Navigator
+      drawerContent={(props) => <DrawerDetails></DrawerDetails>}
       screenOptions={{
         headerStyle: {
           backgroundColor: colors.blueGlico,
-          height: 90,
+          height: 80,
         },
         headerTintColor: "#fff",
         headerTitleAlign: "center",
