@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import { Icon } from "react-native-elements";
 import Colors from "../../constants/Colors";
@@ -128,67 +128,71 @@ const VideoList = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <YoutubeVideoPlayer videoId={videoId} title={videoTitle} />
-      {isLoading ? (
-        <ActivityIndicator
-          size={"large"}
-          color={Colors.darkBlue}
-          style={styles.activityIndicator}
-        />
-      ) : (
-        <View style={{ flex: 1 }}>
-          <View>
-            <PreviusAndNextButtom />
-          </View>
-          <View style={styles.descriptionBox}>
-            <View>
-              <TextGradient style={styles.subTitleText}>Descrição</TextGradient>
-            </View>
-            <ScrollView>
-              <View>
-                <Text style={styles.descriptionText}>{videoDescription}</Text>
-              </View>
-            </ScrollView>
-          </View>
-          <View style={styles.videosRelacionados}>
-            <TextGradient style={styles.subTitleText}>
-              Vídeos Relacionados
-            </TextGradient>
-          </View>
-
-          <FlatList
-            style={{ marginBottom: 20 }}
-            ref={(ref) => setFlatListRef(ref)}
-            data={data}
-            initialNumToRender={5}
-            keyExtractor={(item) => item.id}
-            getItemLayout={getItemLayout}
-            showsVerticalScrollIndicator={false}
-            renderItem={({ item, index }) => (
-              <TouchableOpacity
-                onPress={() => {
-                  setVideoMetadata(
-                    index,
-                    item.id,
-                    item.snippet.title,
-                    item.snippet.description
-                  );
-                }}
-              >
-                <PlayListCards
-                  style={
-                    index === selectedIndex
-                      ? { backgroundColor: Colors.darkBlue, color: "#ffff" }
-                      : { backgroundColor: Colors.white }
-                  }
-                  imageUrl={item.snippet.thumbnails.high.url}
-                  title={item.snippet.title}
-                />
-              </TouchableOpacity>
-            )}
+      <ScrollView>
+        <YoutubeVideoPlayer videoId={videoId} title={videoTitle} />
+        {isLoading ? (
+          <ActivityIndicator
+            size={"large"}
+            color={Colors.darkBlue}
+            style={styles.activityIndicator}
           />
-        </View>
-      )}
+        ) : (
+          <View style={{ flex: 1 }}>
+            <View>
+              <PreviusAndNextButtom />
+            </View>
+            <View style={styles.descriptionBox}>
+              <View>
+                <TextGradient style={styles.subTitleText}>
+                  Descrição
+                </TextGradient>
+              </View>
+              <ScrollView>
+                <View>
+                  <Text style={styles.descriptionText}>{videoDescription}</Text>
+                </View>
+              </ScrollView>
+            </View>
+            <View style={styles.videosRelacionados}>
+              <TextGradient style={styles.subTitleText}>
+                Vídeos Relacionados
+              </TextGradient>
+              <FlatList
+                style={{ marginBottom: 20 }}
+                ref={(ref) => setFlatListRef(ref)}
+                data={data}
+                initialNumToRender={5}
+                horizontal={false}
+                keyExtractor={(item) => item.id}
+                getItemLayout={getItemLayout}
+                showsVerticalScrollIndicator={false}
+                renderItem={({ item, index }) => (
+                  <TouchableOpacity
+                    onPress={() => {
+                      setVideoMetadata(
+                        index,
+                        item.id,
+                        item.snippet.title,
+                        item.snippet.description
+                      );
+                    }}
+                  >
+                    <PlayListCards
+                      style={
+                        index === selectedIndex
+                          ? { backgroundColor: Colors.darkBlue, color: "#ffff" }
+                          : { backgroundColor: Colors.white }
+                      }
+                      imageUrl={item.snippet.thumbnails.high.url}
+                      title={item.snippet.title}
+                    />
+                  </TouchableOpacity>
+                )}
+              />
+            </View>
+          </View>
+        )}
+      </ScrollView>
     </SafeAreaView>
   );
 };
@@ -241,6 +245,7 @@ const styles = StyleSheet.create({
     minHeight: 120,
     marginHorizontal: 4,
     marginTop: 25,
+    marginBottom: 10,
     borderRadius: 10,
     paddingVertical: 4,
     paddingHorizontal: 20,
