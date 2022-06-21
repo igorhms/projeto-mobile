@@ -128,7 +128,6 @@ const VideoList = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
         <YoutubeVideoPlayer videoId={videoId} title={videoTitle} />
         {isLoading ? (
           <ActivityIndicator
@@ -192,7 +191,6 @@ const VideoList = (props) => {
             </View>
           </View>
         )}
-      </ScrollView>
     </SafeAreaView>
   );
 };
