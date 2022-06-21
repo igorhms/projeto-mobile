@@ -1,9 +1,10 @@
 import React from 'react';
 import VideoList from '../components/videoComponent/VideoList';
 
-const Videos = (props) =>{
+const Videos = ({route}) =>{
     return(
-        <VideoList playListId ={props.playListId}/>
+        
+        <VideoList playListId ={route.params.item.playListId}/>
     );   
 }
 export default Videos;

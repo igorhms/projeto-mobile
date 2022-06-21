@@ -1,5 +1,5 @@
 import React from "react";
-import { FlatList, SafeAreaView, StyleSheet } from "react-native";
+import { FlatList, SafeAreaView, StyleSheet, View } from "react-native";
 import Card from "../components/card/Card";
 import { DATA } from "../util/data";
 
@@ -9,9 +9,15 @@ const Home = ({ navigation }) => {
       <FlatList
         style={styles.list}
         data={DATA}
+        keyExtractor={(item) => item.title}
         numColumns={2}
-        renderItem={({ item }) => <Card item={item} navigation={navigation} />}
-        keyExtractor={(item) => String(item.id)}
+        renderItem={({ item }) => {
+          return (
+            <View style={styles.item}>
+              <Card item={item} navigation={navigation} />
+            </View>
+          )
+        }}
       />
     </SafeAreaView>
   );
@@ -19,9 +25,14 @@ const Home = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   list: {
-    height: "100%",
-    marginTop: "6%",
+    height: '100%',
+    marginTop: "7%",
   },
+  item: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent:'center'
+  }
 });
 
 export default Home;
