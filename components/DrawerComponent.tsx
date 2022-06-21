@@ -30,7 +30,9 @@ const DrawerComponent = (navigation) => {
       <Drawer.Screen name="SOS Hiper" component={SosHiper} />
       <Drawer.Screen name="7 Comportamentos" component={Comportamentos} />
       <Drawer.Screen name="Tipos de diabetes" component={TiposDiabetes} />
-      <Drawer.Screen name="Videos" component={Videos}/>
+      <Drawer.Screen name="Videos" component={Videos} 
+      options={{drawerItemStyle: { height: 0 }}}  
+  />
     </Drawer.Navigator>
   );
 };
