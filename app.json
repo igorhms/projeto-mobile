@@ -1,16 +1,16 @@
 {
   "expo": {
-    "name": "projeto_mobile_joslin",
-    "slug": "projeto_mobile_joslin",
+    "name": "SOS App",
+    "slug": "SOS_App",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/logotipo.png",
     "scheme": "myapp",
     "userInterfaceStyle": "automatic",
     "splash": {
       "image": "./assets/images/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#01A6DE"
+      "backgroundColor": "#fffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

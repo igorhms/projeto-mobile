@@ -1,22 +1,30 @@
-import { createDrawerNavigator } from "@react-navigation/drawer";
+import { createDrawerNavigator, DrawerItem } from "@react-navigation/drawer";
+import { LinearGradient } from "expo-linear-gradient";
 import React from "react";
-import colors from "../constants/Colors";
 import HomeScreen from "../screens/Home";
 import Comportamentos from "../screens/Comportamentos";
 import TiposDiabetes from "../screens/TiposDiabetes";
 import SosHiper from "../screens/SosHiper";
 import SosHipo from "../screens/SosHipo";
 import Videos from "../screens/Videos";
+import { View } from "react-native";
+import colors from "../constants/Colors";
+import { useNavigation } from "@react-navigation/native";
+import { Icon } from "react-native-elements";
+import { color } from "react-native-reanimated";
+import DrawerDetails from "./drawer/DrawerDetails";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerComponent = (navigation) => {
+const DrawerComponent = () => {
+  const navigation = useNavigation();
   return (
     <Drawer.Navigator
+      drawerContent={(props) => <DrawerDetails></DrawerDetails>}
       screenOptions={{
         headerStyle: {
           backgroundColor: colors.blueGlico,
-          height: 90,
+          height: 80,
         },
         headerTintColor: "#fff",
         headerTitleAlign: "center",

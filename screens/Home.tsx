@@ -5,8 +5,7 @@ import { DATA } from "../util/data";
 
 const Home = ({ navigation }) => {
   return (
-    <SafeAreaView>
-      {/* <HomeAppBar title='SOS Diabetes' navigation={navigation}/> */}
+    <SafeAreaView style={{ backgroundColor: "#fefefe" }}>
       <FlatList
         style={styles.list}
         data={DATA}
@@ -19,7 +18,6 @@ const Home = ({ navigation }) => {
             </View>
           )
         }}
-
       />
     </SafeAreaView>
   );
