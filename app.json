@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "SOS App",
-    "slug": "SOS_App",
+    "name": "SOS Diabetes",
+    "slug": "SOS_Diabetes",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/logotipo.png",
