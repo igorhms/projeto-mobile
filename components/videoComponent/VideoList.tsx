@@ -7,7 +7,7 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  View
+  View,
 } from "react-native";
 import { Icon } from "react-native-elements";
 import Colors from "../../constants/Colors";
@@ -128,6 +128,7 @@ const VideoList = (props) => {
 
   return (
     <SafeAreaView style={styles.container}>
+      <ScrollView nestedScrollEnabled={true}>
         <YoutubeVideoPlayer videoId={videoId} title={videoTitle} />
         {isLoading ? (
           <ActivityIndicator
@@ -157,6 +158,7 @@ const VideoList = (props) => {
                 Vídeos Relacionados
               </TextGradient>
               <FlatList
+                nestedScrollEnabled={true}
                 style={{ marginBottom: 20 }}
                 ref={(ref) => setFlatListRef(ref)}
                 data={data}
@@ -191,6 +193,7 @@ const VideoList = (props) => {
             </View>
           </View>
         )}
+      </ScrollView>
     </SafeAreaView>
   );
 };
