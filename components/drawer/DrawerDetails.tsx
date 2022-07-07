@@ -60,12 +60,12 @@ const DrawerDetails = (props) => {
           onPress={() => navigation.navigate("SOS Hiper")}
         />
       </View>
-      <DrawerItem
+      {/* <DrawerItem
         labelStyle={styles.lastItem}
         label={"Sobre"}
         icon={() => <Icon size={30} color={Colors.blueGlico} name="help" />}
         onPress={() => (navigation)}
-      />
+      /> */}
     </View>
   );
 };

@@ -157,18 +157,10 @@ const VideoList = (props) => {
               <TextGradient style={styles.subTitleText}>
                 Vídeos Relacionados
               </TextGradient>
-              <FlatList
-                nestedScrollEnabled={true}
-                style={{ marginBottom: 20 }}
-                ref={(ref) => setFlatListRef(ref)}
-                data={data}
-                initialNumToRender={5}
-                horizontal={false}
-                keyExtractor={(item) => item.id}
-                getItemLayout={getItemLayout}
-                showsVerticalScrollIndicator={false}
-                renderItem={({ item, index }) => (
+              {data.map((item, index) => {
+                return (
                   <TouchableOpacity
+                    key={item.id}
                     onPress={() => {
                       setVideoMetadata(
                         index,
@@ -188,8 +180,8 @@ const VideoList = (props) => {
                       title={item.snippet.title}
                     />
                   </TouchableOpacity>
-                )}
-              />
+                );
+              })}
             </View>
           </View>
         )}
